@@ -1,0 +1,143 @@
+﻿@model QuanLyNhanSu.Models.NhanVien
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center text-danger" >Bạn Có Muốn Xóa Thông Tin Nhân Viên Này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdNV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdNV)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QueQuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueQuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DanToc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DanToc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChuyenNganh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuyenNganh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrinhDoHV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrinhDoHV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LuongCB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LuongCB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChucVu.TenCV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChucVu.TenCV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhongBan.TenPhong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhongBan.TenPhong)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+     @Html.AntiForgeryToken()
+
+        <div class="form-group row">
+            <input type="submit" value="Xóa" class="btn btn-danger " />
+            <div class="col-md-2">
+                <a href="@Url.Action("Index","NhanViens")" class="btn btn-primary">Trở lại</a>
+            </div>
+        </div>
+    }
+</div>

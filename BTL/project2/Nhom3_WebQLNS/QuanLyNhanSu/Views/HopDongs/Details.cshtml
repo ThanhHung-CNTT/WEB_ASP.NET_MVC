@@ -1,0 +1,39 @@
+﻿@model QuanLyNhanSu.Models.HopDong
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Chi Tiết Hợp Đồng</h2>
+
+<div>
+    <p><strong>@Html.DisplayNameFor(model => model.IdHD) : </strong>@Html.DisplayFor(model => model.IdHD)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.LoaiHD) : </strong>@Html.DisplayFor(model => model.LoaiHD)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.NhanVien.HoTen) : </strong>@Html.DisplayFor(model => model.NhanVien.HoTen)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.TuNgay) : </strong>@Html.DisplayFor(model => model.TuNgay)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.DenNgay) : </strong>@Html.DisplayFor(model => model.DenNgay)</p>
+</div>
+<br />
+<br />
+@{
+    if (Convert.ToBoolean(Session["isAdmin"]))
+    {
+        <div class="form-group row">
+            <div class="col-auto ">
+                <a href="@Url.Action("Index", "HopDongs", new { id = Model.IdHD })" class="btn btn-primary "><i class="fas fa-backward"> Trở Lại </i></a>
+            </div>
+            <div class="col-auto">
+                <a href="@Url.Action("Edit", "HopDongs", new { id = Model.IdHD })" class="btn btn-success "><i class="fas fa-pen"> Chỉnh Sửa </i></a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="form-group row">
+            <div class="col-auto ">
+                <a href="@Url.Action("Index", "Home", new { id = Model.IdHD })" class="btn btn-primary "><i class="fas fa-backward"> Trở Lại </i></a>
+            </div>
+        </div>
+    }
+}

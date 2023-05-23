@@ -1,0 +1,67 @@
+﻿@model QuanLyNhanSu.Models.NhanVien
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+}
+<h2 class="text-center">Thêm Chấm Công</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.ChamCongs.FirstOrDefault().NgayChamCong, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ChamCongs.FirstOrDefault().NgayChamCong, "{0:MM/dd/yyyy}", new { @class = "form-control", @id = "datepicker" })
+            @Html.ValidationMessageFor(model => model.ChamCongs.FirstOrDefault().NgayChamCong, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+   
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdNV, "Tên Nhân Viên", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.HoTen, null, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.ChamCongs.FirstOrDefault().IdNV, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    @{
+        if (Convert.ToBoolean(Session["isAdmin"]))
+        {
+            <div class="form-group row" style="padding-top:10px;padding-left:10px">
+                <input type="submit" value="Chấm Công" class="btn btn-success" />
+                <div class="col-md-2">
+                    <a href="@Url.Action("Index","ChamCongs")" class="btn btn-primary">Trở lại</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group row" style="padding-top:10px;padding-left:10px">
+                <input type="submit" value="Chấm Công" class="btn btn-success " />
+                <div class="col-md-2">
+                    <a href="@Url.Action("Index","Home")" class="btn btn-primary">Trở lại</a>
+                </div>
+            </div>
+        }
+
+    }
+
+
+</div>
+}

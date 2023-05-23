@@ -1,0 +1,82 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.BieuDo>
+@{
+    ViewBag.Title = "Index";
+    var list = ViewData["phongban"] as List<QuanLyNhanSu.Models.PhongBan>;
+    var arrGia = "";
+    var listst = ViewData["Listst"] as List<string>;
+    var arrTen = listst.ToArray();
+    for (int i = 0; i < list.Count; i++)
+    {
+        var obj = Model.FirstOrDefault(g => g.TenPhongBan == list[i].TenPhongBan);
+        var soTien = obj != null ? obj.SoTien : 0;
+        var color = "#6220f2";
+        arrGia += "{ value: " + soTien + ", itemStyle: { color: '" + color + "' } },";
+    }
+    arrGia.TrimEnd(',');
+    <link href="~/css/csssr.css" rel="stylesheet" />
+    <style>
+        .searchTerm {
+            width: 370px;
+            background: #ffffff;
+            height: 40px;
+            border: none;
+            font-size: 16px;
+            float: left;
+            color: #63717f;
+            padding-left: 45px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .searchButton {
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            height: 40px;
+            border: none;
+            width: 100px;
+            font-size: 16px;
+            float: left;
+            color: #63717f;
+        }
+
+        .opt {
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            height: 40px;
+            border: none;
+            font-size: 16px;
+            float: left;
+            color: #63717f;
+            width: 400px;
+        }
+
+    </style>
+}
+
+<!-- End Sidebar-->
+<main id="main" class="main">
+    <h2>Biểu đồ thống kê tổng lương theo phòng ban</h2>
+    <div id="barChart" style="min-height: 400px;" class="echart"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            echarts.init(document.querySelector("#barChart")).setOption({
+                xAxis: {
+                    type: 'category',
+                    data: ['@Html.Raw(string.Join("','", arrTen))']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [@Html.Raw(string.Join(",", arrGia))],
+                    type: 'bar'
+                }],
+            });
+        });
+    </script>
+    <!-- End Bar Chart -->
+
+</main><!-- End #main -->

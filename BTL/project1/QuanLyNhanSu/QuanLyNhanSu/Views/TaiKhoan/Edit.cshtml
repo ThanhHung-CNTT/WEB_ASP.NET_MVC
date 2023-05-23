@@ -1,0 +1,54 @@
+﻿@model QuanLyNhanSu.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đổi mật khẩu</h2>
+
+<form action="/TaiKhoan/Edit?id=@Model.Id" method="post" onsubmit="return CheckPassword();">
+    <div class="form-horizontal">
+        <h4>Thông tin tài khoản</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.IdCV)
+        @Html.HiddenFor(model => model.TenDangNhap)
+        @Html.HiddenFor(model => model.TinhTrang)
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Mật khẩu cũ</div>
+            <div class="col-md-10">
+                <input name="PassCu" class="form-control" type="password" />
+                <span style="color:red">@ViewBag.TBB</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-md-2">Mật khẩu mới</div>
+            <div class="col-md-10">
+                <input name="MatKhau" class="form-control" type="password" id="mk" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập nhật" class="btn btn-success"/>
+            </div>
+        </div>
+    </div>
+</form>
+    
+
+
+<script>
+    function CheckPassword() {
+        debugger;
+        var inputtxt = $('#mk').val();
+        var patt = new RegExp("@Html.Raw("^.*(?=.{6,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])[a-zA-Z0-9@#$%^&+=]*$")");
+        var res = patt.test(inputtxt);
+        if (res == false) {
+            alert('Mật khẩu yêu cầu có kí tự đặc biệt, chữ in hoa, chữ in thường, tối thiểu 6 kí tự.');
+            return false;
+        }
+    }
+</script>

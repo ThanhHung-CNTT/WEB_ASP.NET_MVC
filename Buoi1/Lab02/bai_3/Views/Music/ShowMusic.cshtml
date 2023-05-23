@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "ShowMusic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Bài Hát</h2>
+<table class="table table-bordered">
+    <tbody>
+        @for (int i = 1; i < 10; i++)
+        {
+            <tr>
+                <td>@i</td>
+                <td>AiHayChuNgo-LamChan-Khang </td>
+                <td>
+                    @Html.ActionLink("Tải về", "Download",
+                    new { MusicName = "Bài Hát Thứ " + @i, MusicId = @i })
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+

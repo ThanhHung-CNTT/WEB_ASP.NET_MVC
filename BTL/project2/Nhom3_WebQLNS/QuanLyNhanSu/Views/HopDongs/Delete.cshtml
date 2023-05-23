@@ -1,0 +1,57 @@
+﻿@model QuanLyNhanSu.Models.HopDong
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3 class="text-center text-danger">Bạn Có Chắc Muốn Xóa Thông Tin Hợp Đồng này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiHD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiHD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TuNgay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TuNgay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DenNgay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DenNgay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.HoTen)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group row">
+            <input type="submit" value="Xóa" class="btn btn-danger " />
+            <div class="col-md-2">
+                <a href="@Url.Action("Index","HopDongs")" class="btn btn-primary">Trở lại</a>
+            </div>
+        </div>
+    }
+</div>
